@@ -1,0 +1,3 @@
+fastapi[standard]==0.115.8
+sqlmodel==0.0.22
+tifffile==2025.2.18
