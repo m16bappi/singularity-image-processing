@@ -12,6 +12,6 @@ def read_root():
 
 app.include_router(
     ImageRoute,
-    prefix="/image",
+    prefix="/images",
     tags=["image"],
 )
