@@ -30,7 +30,7 @@ async def upload_image(
     session: Session = Depends(db.get_session),
 ):
     extension = file.filename.split(".")[-1]
-    if extension.lower() != "tiff":
+    if extension.lower() not in ["tiff", "tif"]:
         raise HTTPException(status_code=400, detail="Only TIFF file is allowed")
 
     media_path = await ImageProcessor.save_image(file)
@@ -50,3 +50,29 @@ async def get_stats(id: int, session: Session = Depends(db.get_session)):
         )
     processor = ImageProcessor(image=image)
     return processor.stats()
+
+
+@router.get("/{id}/metadata")
+async def get_metadata(id: int, session: Session = Depends(db.get_session)):
+    image = session.get(ImageMetadata, id)
+    if not image:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Image does not exists with id {id}",
+        )
+
+    processor = ImageProcessor(image)
+    return processor.metadata()
+
+
+@router.get("/{id}/analyze")
+async def get_metadata(id: int, session: Session = Depends(db.get_session)):
+    image = session.get(ImageMetadata, id)
+    if not image:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Image does not exists with id {id}",
+        )
+
+    processor = ImageProcessor(image)
+    return processor.perform_pca(n_components=2)
