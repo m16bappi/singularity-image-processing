@@ -1,4 +1,4 @@
-# FastAPI Image Processing API - Documentation
+# Image Processing API - Documentation
 
 This API is designed for uploading, processing, and analyzing TIFF images using FastAPI. It supports Principal Component Analysis (PCA) for dimensionality reduction and efficient TIFF image handling.
 
