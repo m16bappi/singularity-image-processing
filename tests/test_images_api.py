@@ -1,19 +1,20 @@
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import create_engine, SQLModel, Session
+# from sqlmodel import create_engine, SQLModel, Session
 
 from main import app
 
-TEST_DB_URL = "sqlite:///./test.db"
-engine = create_engine(TEST_DB_URL, echo=True)
+# Todo: Will split test DB
+# TEST_DB_URL = "sqlite:///./test.db"
+# engine = create_engine(TEST_DB_URL, echo=True)
 
 
-@pytest.fixture(scope="module")
-def test_session():
-    """Fixture to provide a temporary test session."""
-    SQLModel.metadata.create_all(engine)
-    with Session(engine) as session:
-        yield session
+# @pytest.fixture(scope="module")
+# def test_session():
+#     """Fixture to provide a temporary test session."""
+#     SQLModel.metadata.create_all(engine)
+#     with Session(engine) as session:
+#         yield session
 
 
 @pytest.fixture(scope="module")
