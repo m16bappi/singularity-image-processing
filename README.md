@@ -79,6 +79,18 @@ fastapi dev main.py
 }
 ```
 
+### Get Image Stats
+- **Endpoint:** `GET images/{id}/statistics`
+- **Response Example:**
+```
+{
+    "mean": 172.0023,
+    "std_dev": 53.0012,
+    "min": "0",
+    "max": "255",
+}
+```
+
 ### Perform PCA on Image
 - **Endpoint:** `GET images/{id}/analyze`
 - **Request Parameters:** `n_components` (optional, default: `3`)
@@ -98,16 +110,6 @@ curl -X 'GET' 'http://127.0.0.1:8000/images/{id}/analyze' -o reduced_pca_output.
 ### Run all tests
 ```
 pytest -v
-```
-
-### Run API tests
-```
-pytest tests/test_image_api.py
-```
-
-### Run image processor tests
-```
-pytest tests/test_image_processor.py
 ```
 
 ## Technology Stack
